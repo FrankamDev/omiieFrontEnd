@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+
+@theme {
+  --color-omie-green: #00B074;
+  --color-omie-darkGreen: #008455;
+}
+@custom-variant dark (&:where(.dark, .dark *));
