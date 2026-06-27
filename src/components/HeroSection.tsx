@@ -8,7 +8,7 @@ export default function HeroSection() {
   const [activeTab, setActiveTab] = useState('space');
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 bg-white dark:bg-zinc-950 transition-colors duration-500 overflow-hidden selection:bg-[#00B074]/30 selection:text-zinc-900 dark:selection:text-white">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 dark:bg-white bg-zinc-950 transition-colors duration-500 overflow-hidden selection:bg-[#00B074]/30 selection:text-zinc-900 dark:selection:text-white">
       
       {/* BACKGROUND - Ultra Minimalist Technical Canvas */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
