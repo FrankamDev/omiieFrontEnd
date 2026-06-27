@@ -12,7 +12,7 @@ export default function HeroSection() {
       
       {/* BACKGROUND - Ultra Minimalist Technical Canvas */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        {/* Fine Technical Grid */}
+
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(228,228,231,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(228,228,231,0.3)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(39,39,42,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(39,39,42,0.25)_1px,transparent_1px)] [background-size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_40%,transparent_100%)]"></div>
         
         {/* Soft Ambient Textures (No harsh lighting) */}
