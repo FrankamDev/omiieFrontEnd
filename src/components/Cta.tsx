@@ -17,7 +17,7 @@ export default function CTASection() {
 
         <button 
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="group bg-white text-zinc-950 hover:bg-[#00B074] hover:text-white px-12 py-6 rounded text-xl font-semibold flex items-center gap-4 mx-auto transition-all duration-300 hover:shadow-2xl hover:shadow-[#00B074]/40"
+          className="group bg-white text-zinc-950 hover:bg-[#00B074] hover:text-white px-12 py-6 rounded-3xl text-xl font-semibold flex items-center gap-4 mx-auto transition-all duration-300 hover:shadow-2xl hover:shadow-[#00B074]/40"
         >
           Contactez OMIIE maintenant
           <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
