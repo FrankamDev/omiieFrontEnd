@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Target, Eye, Building2, Layers, ArrowRightCircle } from 'lucide-react'; // À adapter selon ton package (ex: lucide-react)
+import { Target, Eye, Building2, Layers, ArrowRightCircle, CheckCircle2 } from 'lucide-react';
 
 export default function AboutPreview() {
   const [activeStep, setActiveStep] = useState(0);
@@ -8,7 +8,7 @@ export default function AboutPreview() {
     {
       title: "Notre Mission",
       tagline: "Optimiser l'existant, connecter les énergies",
-      icon: <Target className="text-[#00B074]" size={16} />,
+      icon: <Target size={22} />,
       desc: "Nous concevons des environnements d'entreprise d'une fluidité absolue. En restructurant vos milieux physiques et en intégrant des interfaces de contrôle agiles, nous permettons à vos talents de se concentrer sur ce qu'ils font de mieux.",
       details: [
         "Réduction des frictions spatiales quotidiennes",
@@ -19,8 +19,8 @@ export default function AboutPreview() {
     {
       title: "Notre Vision",
       tagline: "L'harmonie totale entre l'Humain et son cadre",
-      icon: <Eye className="text-[#00B074]" size={16} />,
-      desc: "Nous projetons un monde où les bureaux physiques et les outils digitaux ne forment qu'un seul écosystème respirant, intelligent et auto-adaptatif. OMIIE se positionne comme le chef d'orchestre de cette transition.",
+      icon: <Eye size={22} />,
+      desc: "Nous projetons un monde où les bureaux physiques et les outils digitaux ne forment qu'un seul écosystème respirant, intelligent et auto-adaptatif.",
       details: [
         "Infrastructures auto-modulables en temps réel",
         "Souveraineté et sécurité absolue des données",
@@ -30,143 +30,141 @@ export default function AboutPreview() {
   ];
 
   return (
-    <section id="about" className="relative py-16 md:py-24 dark:bg-zinc-50 bg-zinc-950 border-y border-zinc-200/50 dark:border-zinc-900 transition-colors duration-500 overflow-hidden">
+    <section id="about" className="relative py-20 md:py-28 dark:bg-zinc-950 bg-zinc-50 border-y border-zinc-900 dark:border-zinc-200 overflow-hidden transition-colors duration-500">
       
-      {/* BACKGROUND - Minimal Technical Dots */}
-      <div className="absolute inset-0 z-0 pointer-events-none select-none">
-        <div className="absolute inset-0 bg-[radial-gradient(#e4e4e7_1px,transparent_1px)] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:2rem_2rem] [mask-image:radial-gradient(circle_at_center,#000_60%,transparent_100%)] opacity-60"></div>
+      {/* Background Subtil */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(#27272a_0.8px,transparent_1px)] dark:bg-[radial-gradient(#e4e4e7_0.8px,transparent_1px)] [background-size:28px_28px] opacity-40" />
+        <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#00B074]/5 dark:bg-emerald-500/10 rounded-full blur-[120px]" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
         
-        {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full dark:bg-zinc-100 bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-[10px] font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-widest mb-4">
-            <Building2 size={10} className="text-[#00B074]" />
-            Qui est OMIIE ?
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900 dark:bg-white border border-zinc-800 dark:border-zinc-200 mb-6">
+            <Building2 size={16} className="text-[#00B074]" />
+            <span className="text-xs font-bold tracking-[2px] uppercase text-zinc-400 dark:text-zinc-500">L'ADN d'OMIIE</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-zinc-900 dark:text-zinc-50 mb-4 leading-tight">
-            L'architecte de vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00B074] to-emerald-500 dark:from-[#00B074] dark:to-emerald-400">environnements hybrides</span>.
+
+          <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white dark:text-zinc-950 leading-tight mb-6">
+            Nous créons des <span className="bg-gradient-to-r from-[#00B074] to-emerald-400 bg-clip-text text-transparent">environnements intelligents</span>.
           </h2>
-          <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-            Né de la fusion entre l'ingénierie d'espace et les technologies d'interfaces logicielles, OMIIE redéfinit la manière dont les entreprises collaborent, s'organisent et évoluent au quotidien.
+
+          <p className="text-zinc-400 dark:text-zinc-500 text-lg max-w-2xl mx-auto">
+            Là où l'architecture physique rencontre l'expérience numérique pour donner naissance à des lieux de travail vivants et performants.
           </p>
         </div>
 
-        {/* MAIN STRUCTURAL GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           
-          {/* LEFT COLUMN: SCHEMATIC FLOW MAP */}
-          <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
-            <div className="relative w-full max-w-[340px] aspect-[4/5] bg-white dark:bg-zinc-900/40 backdrop-blur-sm rounded-2xl border border-zinc-200 dark:border-zinc-900 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.02)] dark:shadow-none flex flex-col justify-between overflow-hidden">
-              
-              {/* Technical Header */}
-              <div className="flex justify-between items-center border-b border-zinc-100 dark:border-zinc-900 pb-3">
-                <span className="text-[9px] font-mono font-medium text-zinc-400 dark:text-zinc-500 uppercase tracking-wider">omiie_architecture_map</span>
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#00B074] relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00B074] opacity-75"></span>
-                </span>
-              </div>
-
-              {/* Blueprint Content */}
-              <div className="relative flex-grow flex flex-col justify-center gap-5 my-6">
+          {/* LEFT - SCHEMATIC VISUAL */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-md">
+              <div className="dark:bg-zinc-900 bg-white border border-zinc-800 dark:border-zinc-200 rounded-3xl p-8 shadow-2xl shadow-black/30 dark:shadow-none aspect-[4/4.1] flex flex-col">
                 
-                {/* Layer 1 — Physical Spaces */}
-                <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800 rounded-xl p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.01)] transition-colors duration-300 hover:border-[#00B074]/30 group">
-                  <span className="absolute -top-2 left-3 px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[7px] font-mono font-bold rounded text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Niveau 1 — Espaces
-                  </span>
-                  <div className="flex gap-3 items-center">
-                    <div className="h-1.5 w-1.5 rounded-full bg-[#00B074] group-hover:scale-125 transition-transform"></div>
-                    <div className="space-y-1.5 flex-grow">
-                      <div className="w-24 h-1.5 bg-zinc-300 dark:bg-zinc-700 rounded-full"></div>
-                      <div className="w-16 h-1 bg-zinc-200 dark:bg-zinc-800 rounded-full"></div>
-                    </div>
+                <div className="flex justify-between items-center mb-8">
+                  <div className="font-mono text-xs tracking-widest text-zinc-500 dark:text-zinc-400">ARCHITECTURE MAP</div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-[#00B074] rounded-full animate-pulse" />
+                    <span className="text-xs text-[#00B074] font-medium">LIVE</span>
                   </div>
                 </div>
 
-                {/* Layer 2 — Digital Interfaces */}
-                <div className="bg-zinc-50 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-zinc-800 rounded-xl p-3.5 shadow-[0_1px_2px_rgba(0,0,0,0.01)] transition-colors duration-300 hover:border-[#00B074]/30 group">
-                  <span className="absolute -top-2 left-3 px-1.5 py-0.5 bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-[7px] font-mono font-bold rounded text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
-                    Niveau 2 — Interfaces
-                  </span>
-                  <div className="flex gap-3 items-center">
-                    <div className="p-1 rounded bg-[#00B074]/10 text-[#00B074]">
-                      <Layers size={11} />
-                    </div>
-                    <div className="space-y-1.5 flex-grow">
-                      <div className="w-32 h-1.5 bg-[#00B074]/20 dark:bg-[#00B074]/30 rounded-full"></div>
-                      <div className="w-20 h-1 bg-[#00B074]/5 dark:bg-[#00B074]/10 rounded-full"></div>
+                <div className="flex-1 flex flex-col justify-center gap-8 relative">
+                  {/* Layer 1 */}
+                  <div className="group relative bg-zinc-800 dark:bg-zinc-100 border border-zinc-700 dark:border-zinc-300 rounded-2xl p-5 transition-all hover:border-[#00B074]">
+                    <div className="absolute -top-3 left-6 px-3 py-0.5 dark:bg-zinc-900 bg-white text-[10px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 rounded">PHYSICAL</div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-8 h-8 rounded-xl bg-[#00B074]/10 flex items-center justify-center text-[#00B074]">
+                        <Layers size={20} />
+                      </div>
+                      <div className="space-y-2 flex-1">
+                        <div className="h-1.5 bg-zinc-700 dark:bg-zinc-300 rounded-full w-3/4 group-hover:w-full transition-all" />
+                        <div className="h-1 bg-zinc-700 dark:bg-zinc-300 rounded-full w-1/2" />
+                      </div>
                     </div>
                   </div>
+
+                  {/* Layer 2 */}
+                  <div className="group relative bg-zinc-800 dark:bg-zinc-100 border border-zinc-700 dark:border-zinc-300 rounded-2xl p-5 transition-all hover:border-[#00B074]">
+                    <div className="absolute -top-3 left-6 px-3 py-0.5 dark:bg-zinc-900 bg-white text-[10px] font-mono tracking-widest text-zinc-400 dark:text-zinc-500 rounded">DIGITAL</div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-8 h-8 rounded-xl bg-[#00B074]/10 flex items-center justify-center text-[#00B074]">
+                        <Target size={20} />
+                      </div>
+                      <div className="space-y-2 flex-1">
+                        <div className="h-1.5 bg-[#00B074] rounded-full w-5/6" />
+                        <div className="h-1 bg-[#00B074]/60 rounded-full w-2/3" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Connecting Line */}
+                  <div className="absolute left-12 top-1/2 w-0.5 h-20 bg-gradient-to-b from-[#00B074] to-transparent" />
                 </div>
 
-                {/* Engineering Grid Underlay */}
-                <div className="absolute inset-0 bg-[radial-gradient(#00B074_0.5px,transparent_0.5px)] [background-size:10px_10px] opacity-10 pointer-events-none"></div>
+                <div className="text-center text-[10px] font-mono text-zinc-500 dark:text-zinc-400 mt-6">
+                  ALIGNEMENT TOTAL • SYNCHRONISATION CONTINUE
+                </div>
               </div>
-
-              {/* Technical Footer */}
-              <div className="border-t border-zinc-100 dark:border-zinc-900 pt-3 flex justify-between items-center text-[9px] font-mono text-zinc-400 dark:text-zinc-500">
-                <span>Alignement structurel</span>
-                <span className="text-[#00B074] font-semibold">100% Cohérent</span>
-              </div>
-
             </div>
           </div>
 
-          {/* RIGHT COLUMN: CORE PILLARS & ACCORDION-TAB */}
-          <div className="lg:col-span-7 order-1 lg:order-2 flex flex-col justify-center">
-            
-            {/* Minimalist Navigation Line */}
-            <div className="flex gap-6 border-b border-zinc-200 dark:border-zinc-900 mb-6">
+          {/* RIGHT - CONTENT */}
+          <div className="lg:col-span-7">
+            {/* Tabs */}
+            <div className="flex border-b border-zinc-800 dark:border-zinc-200 mb-10">
               {pillars.map((pillar, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveStep(idx)}
-                  className={`pb-3 text-sm font-bold tracking-tight relative transition-all duration-300 ${
+                  className={`pb-5 px-8 font-semibold text-lg tracking-tight transition-all relative ${
                     activeStep === idx 
-                      ? 'text-zinc-900 dark:text-zinc-50' 
-                      : 'text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400'
+                      ? 'text-white dark:text-zinc-950' 
+                      : 'text-zinc-400 dark:text-zinc-500 hover:text-zinc-200 dark:hover:text-zinc-700'
                   }`}
                 >
                   {pillar.title}
                   {activeStep === idx && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#00B074] rounded-full"></span>
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00B074] to-emerald-500" />
                   )}
                 </button>
               ))}
             </div>
 
-            {/* Content Display with Fixed Height Constraints */}
-            <div className="min-h-[220px] flex flex-col justify-between relative overflow-hidden">
+            {/* Dynamic Content */}
+            <div className="min-h-[340px] relative">
               {pillars.map((pillar, idx) => (
-                <div 
+                <div
                   key={idx}
-                  className={`transition-all duration-300 transform space-y-4 ${
+                  className={`absolute inset-0 transition-all duration-500 ${
                     activeStep === idx 
-                      ? 'opacity-100 translate-y-0 relative' 
-                      : 'opacity-0 translate-y-2 pointer-events-none absolute inset-x-0'
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-6 pointer-events-none'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 rounded-lg bg-[#00B074]/10 dark:bg-[#00B074]/20 text-[#00B074]">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="mt-1 p-3 rounded-2xl bg-gradient-to-br from-[#00B074]/10 to-emerald-500/5 text-[#00B074] border border-[#00B074]/10">
                       {pillar.icon}
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold text-zinc-900 dark:text-zinc-50">
-                      {pillar.tagline}
-                    </h3>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white dark:text-zinc-900 mb-2">
+                        {pillar.tagline}
+                      </h3>
+                      <p className="text-zinc-400 dark:text-zinc-500 leading-relaxed">
+                        {pillar.desc}
+                      </p>
+                    </div>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed max-w-xl">
-                    {pillar.desc}
-                  </p>
-
-                  {/* Refined Check List */}
-                  <ul className="space-y-2 pt-1">
-                    {pillar.details.map((detail, index) => (
-                      <li key={index} className="flex items-center gap-2.5">
-                        <span className="h-1 w-1 rounded-full bg-[#00B074]"></span>
-                        <span className="text-xs font-medium text-zinc-600 dark:text-zinc-300">
+                  <ul className="space-y-4">
+                    {pillar.details.map((detail, i) => (
+                      <li key={i} className="flex items-start gap-3 group">
+                        <div className="mt-1.5 w-5 h-5 rounded-full bg-[#00B074]/10 flex items-center justify-center flex-shrink-0">
+                          <CheckCircle2 size={14} className="text-[#00B074]" />
+                        </div>
+                        <span className="text-zinc-300 dark:text-zinc-600 text-[15px] leading-relaxed">
                           {detail}
                         </span>
                       </li>
@@ -174,21 +172,17 @@ export default function AboutPreview() {
                   </ul>
                 </div>
               ))}
-
-              {/* Action Button CTA */}
-              <div className="flex items-center mt-6 pt-2">
-                <button className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-900 dark:hover:bg-zinc-800/80 text-white dark:text-zinc-100 px-5 py-2.5 rounded-xl text-xs font-semibold border border-transparent dark:border-zinc-800/60 shadow-sm transition-all duration-300">
-                  En savoir plus sur nous
-                  <ArrowRightCircle size={13} className="text-zinc-400 group-hover:text-[#00B074] group-hover:translate-x-0.5 transition-all duration-200" />
-                </button>
-              </div>
-
             </div>
 
+            {/* CTA */}
+            <div className="mt-12">
+              <button className="group inline-flex items-center gap-3 bg-white dark:bg-zinc-900 hover:bg-[#00B074] hover:text-white text-zinc-900 dark:text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 border border-zinc-700 dark:border-zinc-200">
+                Découvrir notre approche
+                <ArrowRightCircle size={20} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </div>
-
         </div>
-
       </div>
     </section>
   );
