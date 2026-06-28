@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { 
   Sparkles, ArrowUpRight, Play, CheckCircle2, Shield, 
   Wifi, Battery, Cpu, Compass, Layers, TrendingUp, Monitor, Smartphone 

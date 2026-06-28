@@ -1,6 +1,7 @@
 import AboutPreview from "../components/AboutPreview";
 import HeroSection from "../components/HeroSection";
 import Navbar from "../components/Navbar";
+import ServicesSection from "../components/ServicesSection";
 
 export default function Home() {
 
@@ -9,6 +10,7 @@ export default function Home() {
             <Navbar/>
             <HeroSection/>
             <AboutPreview/>
+            <ServicesSection/>
         </div>
     )
 }
