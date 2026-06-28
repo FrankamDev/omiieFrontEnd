@@ -7,21 +7,21 @@ import Navbar from "../components/Navbar";
 import ProcessSection from "../components/ProcessSection";
 import ServicesSection from "../components/ServicesSection";
 import TestimonialsSection from "../components/TestimonialsSection";
+// import TestimonialsSection from "../components/TestimonialsSection";
 import WhyChooseUs from "../components/WhyChooseUs";
 
 export default function Home() {
-
-    return(
-        <div className="home">
-            <Navbar/>
-            <HeroSection/>
-            <AboutPreview/>
-            <ServicesSection/>
-            <ExpertiseSection/>
-            <ProcessSection/>
-            <WhyChooseUs/>
-            <TestimonialsSection/>
-            <CTASection/>
-        </div>
-    )
+  return (
+    <div className="home">
+      <Navbar />
+      <HeroSection />
+      <AboutPreview />
+      <ServicesSection />
+      <ExpertiseSection />
+      <ProcessSection />
+      <WhyChooseUs />
+      <TestimonialsSection/>
+      <CTASection />
+    </div>
+  );
 }

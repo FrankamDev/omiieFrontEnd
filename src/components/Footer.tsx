@@ -1,110 +1,257 @@
-import { Mail, Phone, MapPin} from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, Phone, MapPin,  ChevronDown, Send } from 'lucide-react';
+import { LiaLinkedin } from 'react-icons/lia';
+import { BsInstagram, BsTwitter } from 'react-icons/bs';
+import { FaFacebook } from 'react-icons/fa';
 
-import SocialIcons from './SocialIcons';
+// 1. Contrats de données TypeScript (Prêt pour ton API / Base de données)
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+
+export interface FooterContactInfo {
+  address: string;
+  cityCountry: string;
+  phone: string;
+  phoneDisplay: string;
+  email: string;
+}
+
+export interface FooterData {
+  description: string;
+  navigation: FooterLink[];
+  services: FooterLink[];
+  contact: FooterContactInfo;
+}
+
+// 2. Mock des données centralisées simulant l'API
+const MOCK_FOOTER_DATA: FooterData = {
+  description: "Nous concevons les environnements de travail de demain : intelligents, profondément humains et hautement performants.",
+  navigation: [
+    { label: 'Accueil', href: '#home' },
+    { label: 'À propos', href: '#about' },
+    { label: 'Services', href: '#services' },
+    { label: 'Réalisations', href: '#portfolio' },
+    { label: 'Expertise', href: '#expertise' },
+  ],
+  services: [
+    { label: 'Conseil Stratégique', href: '#services' },
+    { label: 'Transformation Digitale', href: '#services' },
+    { label: 'Aménagement d’Espaces', href: '#services' },
+    { label: 'Accompagnement', href: '#services' },
+  ],
+  contact: {
+    address: "237 Avenue de l’Innovation",
+    cityCountry: "Yaoundé & Douala, Cameroun",
+    phone: "+237690461830",
+    phoneDisplay: "+237 690 46 18 30",
+    email: "contact@omiie.fr"
+  }
+};
 
 export default function Footer() {
+  const [data] = useState<FooterData>(MOCK_FOOTER_DATA);
+  const [emailInput, setEmailInput] = useState<string>('');
+  
+  // États de gestion des accordéons réactifs sur mobile uniquement
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Logique future de traitement de base de données (ex: fetch('/api/newsletter'))
+    alert(`Inscrit avec succès : ${emailInput}`);
+    setEmailInput('');
+  };
+
   return (
-    <footer className="bg-zinc-950 dark:bg-zinc-50 border-t border-zinc-800 dark:border-zinc-200 pt-20 pb-12">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <footer className="bg-zinc-950 dark:bg-zinc-50 border-t border-zinc-900 dark:border-zinc-200 pt-16 pb-8 md:pt-24 md:pb-12 transition-colors duration-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
-          {/* Colonne Logo + Description */}
-          <div className="lg:col-span-5">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-9 h-9 bg-gradient-to-br from-[#00B074] to-emerald-600 rounded-2xl flex items-center justify-center">
-                <span className="text-white font-black text-2xl">O</span>
+          {/* COLONNE LOGO + BRAND DESCRIPTION */}
+          <div className="lg:col-span-4 flex flex-col items-start">
+            <div className="flex items-center gap-2.5 mb-5">
+              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-emerald-500/10">
+                <span className="text-white font-black text-lg tracking-tighter">O</span>
               </div>
-              <span className="text-3xl font-black tracking-tighter text-white dark:text-zinc-950">
+              <span className="text-2xl font-black tracking-tighter text-white dark:text-zinc-950">
                 OMIIE
               </span>
             </div>
 
-            <p className="text-zinc-400 dark:text-zinc-500 max-w-md text-[15.5px] leading-relaxed">
-              Nous concevons les environnements de travail de demain : intelligents, humains et performants.
+            <p className="text-zinc-400 dark:text-zinc-500 text-sm md:text-base leading-relaxed max-w-sm font-medium">
+              {data.description}
             </p>
 
-            <SocialIcons iconSize={22} gap='gap-5' className='mt-8'/>
+            {/* Réintégration Premium des Icônes Sociales Intégrées (Évite la dépendance externe) */}
+            <div className="flex gap-4 mt-6">
+              {[
+                { icon: <LiaLinkedin size={18} />, href: '#' },
+                { icon: <BsTwitter size={18} />, href: '#' },
+                { icon: <BsInstagram size={18} />, href: '#' },
+                { icon: <FaFacebook size={18} />, href: '#' },
+              ].map((social, i) => (
+                <motion.a 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  key={i} 
+                  href={social.href} 
+                  className="p-2.5 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-zinc-400 dark:text-zinc-500 hover:text-emerald-500 dark:hover:text-emerald-500 hover:bg-zinc-900 border border-zinc-800/80 dark:border-zinc-200/60 transition-colors"
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
           </div>
 
-          {/* Navigation */}
-          <div className="lg:col-span-2">
-            <h4 className="font-semibold text-white dark:text-zinc-950 mb-5">Navigation</h4>
-            <ul className="space-y-3 text-zinc-400 dark:text-zinc-500">
-              <li><a href="/" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Accueil</a></li>
-              <li><a href="#about" className="hover:text-white dark:hover:text-zinc-950 transition-colors">À propos</a></li>
-              <li><a href="#services" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Services</a></li>
-              <li><a href="#projects" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Réalisations</a></li>
-              <li><a href="#expertise" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Expertise</a></li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="lg:col-span-2">
-            <h4 className="font-semibold text-white dark:text-zinc-950 mb-5">Services</h4>
-            <ul className="space-y-3 text-zinc-400 dark:text-zinc-500">
-              <li><a href="/" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Conseil Stratégique</a></li>
-              <li><a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Transformation Digitale</a></li>
-              <li><a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Aménagement d’Espaces</a></li>
-              <li><a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Accompagnement</a></li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="lg:col-span-3">
-            <h4 className="font-semibold text-white dark:text-zinc-950 mb-5">Contact</h4>
+          {/* MENUS RESPONSIVES (Accordéons sur mobile, Grilles classiques sur PC) */}
+          
+          {/* Colonne Navigation */}
+          <div className="lg:col-span-2 border-b border-zinc-900 dark:border-zinc-200/60 lg:border-none pb-4 lg:pb-0">
+            <button 
+              onClick={() => toggleSection('nav')}
+              className="flex items-center justify-between w-full lg:cursor-default text-left font-bold text-white dark:text-zinc-950 text-sm tracking-wide uppercase font-mono mb-0 lg:mb-5 focus:outline-none"
+            >
+              <span>Navigation</span>
+              <ChevronDown size={16} className={`lg:hidden transition-transform duration-300 ${openSection === 'nav' ? 'rotate-180' : ''}`} />
+            </button>
             
-            <div className="space-y-5 text-zinc-400 dark:text-zinc-500">
+            <div className="hidden lg:block">
+              <ul className="space-y-3 text-sm font-medium text-zinc-400 dark:text-zinc-500">
+                {data.navigation.map((link, idx) => (
+                  <li key={idx}>
+                    <a href={link.href} className="hover:text-emerald-400 dark:hover:text-emerald-500 transition-colors">{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <AnimatePresence>
+              {openSection === 'nav' && (
+                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden mt-3">
+                  <ul className="space-y-2.5 text-sm font-medium text-zinc-400 dark:text-zinc-500 pb-2">
+                    {data.navigation.map((link, idx) => (
+                      <li key={idx}>
+                        <a href={link.href} className="block py-1 active:text-emerald-500">{link.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Colonne Services */}
+          <div className="lg:col-span-2 border-b border-zinc-900 dark:border-zinc-200/60 lg:border-none pb-4 lg:pb-0">
+            <button 
+              onClick={() => toggleSection('services')}
+              className="flex items-center justify-between w-full lg:cursor-default text-left font-bold text-white dark:text-zinc-950 text-sm tracking-wide uppercase font-mono mb-0 lg:mb-5 focus:outline-none"
+            >
+              <span>Services</span>
+              <ChevronDown size={16} className={`lg:hidden transition-transform duration-300 ${openSection === 'services' ? 'rotate-180' : ''}`} />
+            </button>
+            
+            <div className="hidden lg:block">
+              <ul className="space-y-3 text-sm font-medium text-zinc-400 dark:text-zinc-500">
+                {data.services.map((link, idx) => (
+                  <li key={idx}>
+                    <a href={link.href} className="hover:text-emerald-400 dark:hover:text-emerald-500 transition-colors">{link.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <AnimatePresence>
+              {openSection === 'services' && (
+                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="lg:hidden overflow-hidden mt-3">
+                  <ul className="space-y-2.5 text-sm font-medium text-zinc-400 dark:text-zinc-500 pb-2">
+                    {data.services.map((link, idx) => (
+                      <li key={idx}>
+                        <a href={link.href} className="block py-1 active:text-emerald-500">{link.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* COLONNE COORDONNÉES DE CONTACT & NEWSLETTER */}
+          <div className="lg:col-span-4 space-y-6">
+            <h4 className="font-bold text-white dark:text-zinc-950 text-sm tracking-wide uppercase font-mono hidden lg:block mb-5">Contact</h4>
+            
+            <div className="space-y-4 text-xs md:text-sm text-zinc-400 dark:text-zinc-500 font-medium">
               <div className="flex items-start gap-3">
-                <MapPin size={20} className="mt-0.5 text-[#00B074]" />
+                <MapPin size={16} className="mt-0.5 text-emerald-500 shrink-0" />
                 <div>
-                  <p>237 Avenue de l’Innovation</p>
-                  <p>Yaoundé & Douala, Cameroun</p>
+                  <p className="text-white dark:text-zinc-950 font-bold">{data.contact.address}</p>
+                  <p>{data.contact.cityCountry}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <Phone size={20} className="text-[#00B074]" />
-                <p>+237 690 46 18 30</p>
+                <Phone size={16} className="text-emerald-500 shrink-0" />
+                <a href={`tel:${data.contact.phone}`} className="hover:text-emerald-500 transition-colors">{data.contact.phoneDisplay}</a>
               </div>
 
               <div className="flex items-center gap-3">
-                <Mail size={20} className="text-[#00B074]" />
-                <a href="mailto:contact@omiie.fr" className="hover:text-white dark:hover:text-zinc-950 transition-colors">
-                  contact@omiie.fr
+                <Mail size={16} className="text-emerald-500 shrink-0" />
+                <a href={`mailto:${data.contact.email}`} className="hover:text-emerald-500 transition-colors font-semibold">
+                  {data.contact.email}
                 </a>
               </div>
             </div>
 
-            {/* Newsletter */}
-            <div className="mt-10">
-              <p className="text-sm font-medium text-white dark:text-zinc-950 mb-3">Restez informé</p>
-              <div className="flex">
+            {/* Newsletter Bloc Tactile */}
+            <form onSubmit={handleNewsletterSubmit} className="pt-4 border-t border-zinc-900 dark:border-zinc-200/80 lg:border-none">
+              <label htmlFor="footer-email" className="block text-xs font-bold text-white dark:text-zinc-950 uppercase font-mono mb-2.5">
+                Restez informé
+              </label>
+              <div className="relative flex items-center max-w-md">
                 <input
+                  id="footer-email"
                   type="email"
-                  placeholder="Votre email"
-                  className="bg-zinc-900 dark:bg-zinc-100 border border-zinc-700 dark:border-zinc-300 text-white dark:text-zinc-950 px-5 py-3 rounded-l-2xl focus:outline-none w-full text-sm"
+                  required
+                  value={emailInput}
+                  onChange={(e) => setEmailInput(e.target.value)}
+                  placeholder="Votre adresse email"
+                  className="bg-zinc-900 dark:bg-zinc-100 border border-zinc-800 dark:border-zinc-200 text-white dark:text-zinc-950 px-4 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/40 w-full text-xs font-medium placeholder-zinc-500 dark:placeholder-zinc-400"
                 />
-                <button className="bg-[#00B074] hover:bg-emerald-600 px-6 rounded-r-2xl text-sm font-semibold transition-colors">
-                  OK
-                </button>
+                <motion.button 
+                  whileTap={{ scale: 0.95 }}
+                  type="submit"
+                  className="absolute right-1.5 p-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg transition-colors flex items-center justify-center shadow"
+                >
+                  <Send size={14} />
+                </motion.button>
               </div>
-            </div>
+            </form>
           </div>
+
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-zinc-800 dark:border-zinc-200 mt-20 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-500">
+        {/* REZ-DE-CHAUSSÉE / BOTTOM INFOS BAR */}
+        <div className="border-t border-zinc-900 dark:border-zinc-200/80 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] md:text-xs font-medium text-zinc-500 dark:text-zinc-400">
           <p>© 2026 OMIIE. Tous droits réservés.</p>
           
-          <div className="flex gap-6 mt-4 md:mt-0">
+          <div className="flex gap-4 md:gap-6 order-last md:order-none">
             <a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Mentions légales</a>
             <a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">Confidentialité</a>
             <a href="#" className="hover:text-white dark:hover:text-zinc-950 transition-colors">CGV</a>
           </div>
 
-          <p className="mt-4 md:mt-0 text-xs">Conçu avec passion pour l’avenir du travail.</p>
+          <p className="text-zinc-600 dark:text-zinc-400 font-mono text-[10px] text-center md:text-right select-none">
+            Conçu avec passion pour l’avenir du travail.
+          </p>
         </div>
+
       </div>
     </footer>
   );
